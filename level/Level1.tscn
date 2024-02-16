@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://sxqo4anqircl"]
+
+[ext_resource type="Script" path="res://level/Level1.gd" id="1_d5u6j"]
+[ext_resource type="Texture2D" uid="uid://dpwexfnynsd6p" path="res://icon.svg" id="1_mr25x"]
+[ext_resource type="PackedScene" uid="uid://b6hs5jundy37l" path="res://entity/Player.tscn" id="2_kwpkc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_47mal"]
+size = Vector2(1097, 91)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8l4b"]
+size = Vector2(300, 300)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lubsc"]
+size = Vector2(300, 60)
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_d5u6j")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(649, 673)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(162.48, 0)
+scale = Vector2(9.22625, 0.75)
+texture = ExtResource("1_mr25x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(131.5, 0)
+shape = SubResource("RectangleShape2D_47mal")
+
+[node name="Player" parent="." instance=ExtResource("2_kwpkc")]
+position = Vector2(327, 483)
+max_speed = 200.0
+jump_power = 150.0
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 91
+text = "Score: "
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(846, 426)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_s8l4b")
+
+[node name="DeathBox" type="Area2D" parent="."]
+position = Vector2(99, 689)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathBox"]
+shape = SubResource("RectangleShape2D_lubsc")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="DeathBox" to="." method="_on_death_box_body_entered"]
