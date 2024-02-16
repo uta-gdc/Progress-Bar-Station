@@ -18,6 +18,7 @@ script = ExtResource("1_d5u6j")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(649, 673)
+collision_layer = 2
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
@@ -42,6 +43,7 @@ text = "Score: "
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(846, 426)
+collision_layer = 2
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -49,6 +51,7 @@ shape = SubResource("RectangleShape2D_s8l4b")
 
 [node name="DeathBox" type="Area2D" parent="."]
 position = Vector2(99, 689)
+collision_layer = 2
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathBox"]
