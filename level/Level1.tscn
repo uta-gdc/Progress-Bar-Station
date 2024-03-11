@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://sxqo4anqircl"]
+[gd_scene load_steps=9 format=3 uid="uid://sxqo4anqircl"]
 
 [ext_resource type="Script" path="res://level/Level1.gd" id="1_d5u6j"]
 [ext_resource type="Texture2D" uid="uid://dpwexfnynsd6p" path="res://icon.svg" id="1_mr25x"]
 [ext_resource type="PackedScene" uid="uid://b6hs5jundy37l" path="res://entity/Player.tscn" id="2_kwpkc"]
+[ext_resource type="AudioStream" uid="uid://belqocihrkdu3" path="res://ui/Ding - Sound Effect (HD).mp3" id="4_3g36g"]
+[ext_resource type="AudioStream" uid="uid://dx16ytogeoeyg" path="res://ui/Victory Sound Effect.mp3" id="5_4ncvk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_47mal"]
 size = Vector2(1097, 91)
@@ -57,5 +59,19 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathBox"]
 shape = SubResource("RectangleShape2D_lubsc")
 
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = 689.0
+offset_top = 49.0
+offset_right = 1240.0
+offset_bottom = 76.0
+max_value = 10.0
+
+[node name="ScoreIncrease" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_3g36g")
+
+[node name="Victory" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_4ncvk")
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="DeathBox" to="." method="_on_death_box_body_entered"]
+[connection signal="value_changed" from="ProgressBar" to="." method="_on_progress_bar_value_changed"]
